@@ -1,11 +1,13 @@
 ﻿using CoreAnimation;
 using CoreGraphics;
+using LineEntry.FormsPlugin.iOS;
 using System;
 using System.ComponentModel;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
+[assembly: ExportRenderer(typeof(LineEntry.FormsPlugin.LineEntry), typeof(LineEntryRenderer))]
 namespace LineEntry.FormsPlugin.iOS
 {
   public class LineEntryRenderer : EntryRenderer
@@ -57,7 +59,9 @@ namespace LineEntry.FormsPlugin.iOS
       base.OnElementPropertyChanged(sender, e);
 
       // Width or Height of the element has changed so redraw the line
-      if (e.PropertyName == LineEntry.WidthProperty.PropertyName || e.PropertyName == LineEntry.HeightProperty.PropertyName)
+      if (e.PropertyName == LineEntry.WidthProperty.PropertyName || 
+        e.PropertyName == LineEntry.HeightProperty.PropertyName ||
+        e.PropertyName == LineEntry.BorderColorProperty.PropertyName)
       {
         DrawLine();
       }
@@ -117,5 +121,9 @@ namespace LineEntry.FormsPlugin.iOS
       base.Dispose(disposing);
     }
 
+    /// <summary>
+		/// Used for registration with dependency service
+		/// </summary>
+		public static new void Init(){}
   }
 }

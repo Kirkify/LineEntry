@@ -1,8 +1,10 @@
 ﻿using Android.Graphics;
+using LineEntry.FormsPlugin.Droid;
 using System.ComponentModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
+[assembly: ExportRenderer(typeof(LineEntry.FormsPlugin.LineEntry), typeof(LineEntryRenderer))]
 namespace LineEntry.FormsPlugin.Droid
 {
   public class LineEntryRenderer : EntryRenderer
@@ -36,5 +38,9 @@ namespace LineEntry.FormsPlugin.Droid
       }
     }
 
+    /// <summary>
+		/// Used for registration with dependency service
+		/// </summary>
+		public static void Init() { }
   }
 }
